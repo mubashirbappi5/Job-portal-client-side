@@ -1,48 +1,32 @@
 import Lottie from 'lottie-react';
 import React, { useContext } from 'react';
-
-import registerlottie from '../assets/lotteie/Animation - 1733903768326.json'
+import registerlottie from '../assets/lotteie/Animation - 1734073596666.json'
 import { Authcontext } from '../Context/AuthContext/AuthProvider';
 import Socialicon from '../Sharedfile/Socialicon';
-const Register = () => {
 
-  const { userregister,updateuserprofile} = useContext(Authcontext)
-    const handleregister = (e)=>{
-        e.preventDefault()
-        const form = e. target
-        const name =  form.name.value 
+const Signin = () => {
+    const {  userslogin} = useContext(Authcontext)
+    const handlelogin = (e)=>{
+        e.preventDefault();
+
+        const form = e.target
         const email = form.email.value
         const password = form.password.value
-        
+        console.log(email,password)
 
-        const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        if(!regex.test(password)){
-            alert("invalid password")
-            return
-        }
-        userregister(email,password)
-        .then(res=>{
-        
-          const profile ={
-            displayName:name
-          }
-          updateuserprofile(profile)
-          .then(res=>{
+        userslogin(email,password)
+        .then(res=> {
             console.log(res.user)
-          })
-          .catch(error=>{
-            console.log(error)
-          })
+            form.reset()
         })
         .catch(error=>{
-          console.log(error)
+            console.log(error)
         })
-
-
     }
     return (
-        <div className='bg-base-200 p-7'>
-            <h1 className="text-5xl font-bold text-center ">Register now!</h1>
+        <div>
+             <div className='bg-base-200 p-7'>
+            <h1 className="text-5xl font-bold text-center ">Log in now!</h1>
          <div className="hero  min-h-screen ">
             
   <div className="hero-content flex-col lg:flex-row-reverse gap-10">
@@ -54,13 +38,8 @@ const Register = () => {
     </div>
     <div className="card hover:bg-base-200 bg-base-100 w-full max-w-sm shrink-0 border-2 border-sky-400">
     
-      <form onSubmit={handleregister} className="card-body">
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input type="text" placeholder="Full Name" name='name' className="input input-bordered" required />
-        </div>
+      <form onSubmit={handlelogin} className="card-body">
+       
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -75,18 +54,21 @@ const Register = () => {
         
         </div>
         <div className="form-control mt-6">
-          <button className="btn bg-purple-500">Register</button>
+          <button className="btn bg-purple-500">Log in</button>
         </div>
       </form>
       <div>
         <Socialicon/>
       </div>
     </div>
+    
   </div>
 </div>
+            
+        </div>
             
         </div>
     );
 };
 
-export default Register;
+export default Signin;

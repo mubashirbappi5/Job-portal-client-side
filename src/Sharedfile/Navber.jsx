@@ -1,22 +1,35 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Authcontext } from "../Context/AuthContext/AuthProvider";
+import { Typewriter } from "react-simple-typewriter";
 
 const Navber = () => {
+  const {users,usersignout} = useContext(Authcontext)
+  const signouthandle = ()=>{
+    usersignout()
+    .then(()=>{
+      alert('sign out done!')
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
   const links = (
     <>
      <Link to={'/'}> <li>
-        <a>Home</a>
+      Home
       </li></Link>
       
      <Link to={'/'}> <li>
-        <a>Home</a>
+      Home
       </li></Link>
       
      <Link to={'/'}> <li>
-        <a>Home</a>
+      Home
       </li></Link>
       
      <Link to={'/'}> <li>
-        <a>Home</a>
+      Home
       </li></Link>
       
     </>
@@ -44,20 +57,44 @@ const Navber = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 gap-4 shadow"
             >
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">
+            <img className="w-10 h-10" src="https://img.icons8.com/?size=100&id=AzGvAa3tTD17&format=png&color=000000" alt="" />
+            CAREER-
+            <span className="text-sky-400">
+            <Typewriter
+            words={['CODE']}
+            loop={5}
+            cursor
+            cursorStyle='_'
+            typeSpeed={500}
+            deleteSpeed={400}
+            delaySpeed={1000}
+            
+          />
+            </span>
+            </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1 gap-5">{links}</ul>
         </div>
         <div className="navbar-end gap-3">
-          <Link to={'/register'} >Register</Link>
+         {
+          users?<div>
+            <h1>{users?.email}</h1>
+            <button className="btn" onClick={signouthandle}>Log out</button>
+          </div>:
+          <div className="flex gap-4 items-center">
+             <Link to={'/register'} >Register</Link>
           
-          <Link to={'/signin'} className="btn">Sign Up</Link>
+          <Link to={'/signin'} className="btn">Sign In</Link>
+          </div>
+
+         }
          
         </div>
       </div>
