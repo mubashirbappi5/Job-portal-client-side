@@ -3,9 +3,12 @@ import React, { useContext } from 'react';
 import registerlottie from '../assets/lotteie/Animation - 1734073596666.json'
 import { Authcontext } from '../Context/AuthContext/AuthProvider';
 import Socialicon from '../Sharedfile/Socialicon';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Signin = () => {
     const {  userslogin} = useContext(Authcontext)
+    const location = useLocation()
+    const navigate = useNavigate()
     const handlelogin = (e)=>{
         e.preventDefault();
 
@@ -18,6 +21,7 @@ const Signin = () => {
         .then(res=> {
             console.log(res.user)
             form.reset()
+            navigate(location?.state?location.state:'/')
         })
         .catch(error=>{
             console.log(error)

@@ -1,5 +1,6 @@
 import Banner from "./HomeComponents/Banner";
 import Category from "./HomeComponents/Category";
+import HotJobs from "./HomeComponents/HotJobs";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
           <Banner/>
           <Category/>
+          <HotJobs/>
         </div>
     );
 };

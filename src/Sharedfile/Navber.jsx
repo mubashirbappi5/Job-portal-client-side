@@ -20,16 +20,16 @@ const Navber = () => {
       Home
       </li></Link>
       
-     <Link to={'/'}> <li>
-      Home
+     <Link to={'/myapplication'}> <li>
+      My Application
       </li></Link>
       
-     <Link to={'/'}> <li>
-      Home
+     <Link to={'/addjob'}> <li>
+     Add Job
       </li></Link>
       
-     <Link to={'/'}> <li>
-      Home
+     <Link to={'/myjobs'}> <li>
+      My Jobs
       </li></Link>
       
     </>

@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { Authcontext } from '../Context/AuthContext/AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Socialicon = () => {
     const {usersgooglelogin} = useContext(Authcontext)
+    const location = useLocation()
+    const navigate = useNavigate()
     const handlegooglelogin = ()=>{
         usersgooglelogin()
         .then(res=>{
             console.log(res.user)
+            navigate(location?.state?location.state:'/')
         })
         .catch(error=>{
             console.log(error)
