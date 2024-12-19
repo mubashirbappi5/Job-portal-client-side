@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Authcontext } from '../Context/AuthContext/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Socialicon = () => {
     const {usersgooglelogin} = useContext(Authcontext)
@@ -9,7 +10,10 @@ const Socialicon = () => {
     const handlegooglelogin = ()=>{
         usersgooglelogin()
         .then(res=>{
-            console.log(res.user)
+           
+          
+           
+
             navigate(location?.state?location.state:'/')
         })
         .catch(error=>{

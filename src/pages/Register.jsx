@@ -28,7 +28,7 @@ const Register = () => {
           }
           updateuserprofile(profile)
           .then(res=>{
-            console.log(res.user)
+           
           })
           .catch(error=>{
             console.log(error)

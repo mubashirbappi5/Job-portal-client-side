@@ -4,6 +4,7 @@ import registerlottie from '../assets/lotteie/Animation - 1734073596666.json'
 import { Authcontext } from '../Context/AuthContext/AuthProvider';
 import Socialicon from '../Sharedfile/Socialicon';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signin = () => {
     const {  userslogin} = useContext(Authcontext)
@@ -20,6 +21,7 @@ const Signin = () => {
         userslogin(email,password)
         .then(res=> {
             console.log(res.user)
+            
             form.reset()
             navigate(location?.state?location.state:'/')
         })

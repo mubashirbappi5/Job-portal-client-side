@@ -15,7 +15,7 @@ const AddJobs = () => {
 
       }
    console.log(newobj)
-   fetch('http://localhost:5000/jobs',{
+   fetch('https://job-portal-server-seven-bice.vercel.app/jobs',{
     method:'POST',
     headers:{
      "content-type":"application/json"

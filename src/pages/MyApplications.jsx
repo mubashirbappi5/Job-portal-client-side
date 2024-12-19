@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import UseAuth from '../Hooks/UseAuth';
+import axios from 'axios';
+import UseAxiosSecure from '../Hooks/UseAxiosSecure';
+
 
 const MyApplications = () => {
     const {users} = UseAuth()
     const [myapplication,setmyapplication] = useState([])
+    const axiossecure = UseAxiosSecure()
    
     const handledelete =(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/job-application?email=${users?.email}&id=${id}`, {
+        fetch(`https://job-portal-server-seven-bice.vercel.app/job-application?email=${users?.email}&id=${id}`, {
             method:"DELETE",
            headers: { 'Content-Type': 'application/json' },
 
@@ -24,9 +28,12 @@ const MyApplications = () => {
         
     }
     useEffect(()=>{
-        fetch(`http://localhost:5000/job-application?email=${users?.email}`)
-    .then(res=>res.json())
-    .then(data=>setmyapplication(data))
+    //     fetch(`http://localhost:5000/job-application?email=${users?.email}`)
+    // .then(res=>res.json())
+    // .then(data=>setmyapplication(data))
+    // axios.get(`http://localhost:5000/job-application?email=${users?.email}`,{withCredentials:true})
+    axiossecure.get(`/job-application?email=${users?.email}`)
+    .then(res=>console.log(setmyapplication(res.data)))
     },[])
     return (
         <div>
